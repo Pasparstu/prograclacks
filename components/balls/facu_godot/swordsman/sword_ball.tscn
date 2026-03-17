@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://npd8sm34wtvi"]
+
+[ext_resource type="Script" uid="uid://dl20y1jd1cp" path="res://components/balls/facu_godot/swordsman/sword_ball.gd" id="1_12qel"]
+[ext_resource type="Texture2D" uid="uid://ekisdenueh13" path="res://assets/textures/circle.svg" id="2_8t85u"]
+[ext_resource type="FontFile" uid="uid://cy7irh352x1gb" path="res://assets/fonts/Anton-Regular.ttf" id="3_wm0o5"]
+[ext_resource type="AudioStream" uid="uid://cms53kqductr2" path="res://assets/audio/clack.ogg" id="4_02hxr"]
+[ext_resource type="Texture2D" uid="uid://eilai0x3khdk" path="res://components/balls/facu_godot/swordsman/assets/sword.png" id="5_r5wx5"]
+[ext_resource type="AudioStream" uid="uid://dcipqdewv8qkc" path="res://components/balls/facu_godot/swordsman/assets/sword_dash.wav" id="6_fqxyx"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_eb21c"]
+bounce = 0.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eb21c"]
+radius = 66.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_eb21c"]
+font = ExtResource("3_wm0o5")
+font_size = 48
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Ball" type="RigidBody2D" unique_id=1750905078 node_paths=PackedStringArray("sword_node", "sword", "dash_sound", "elements", "sprite", "collision_shape", "attack_timer", "clack_sound", "label")]
+process_mode = 1
+physics_material_override = SubResource("PhysicsMaterial_eb21c")
+gravity_scale = 0.0
+lock_rotation = true
+continuous_cd = 2
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_12qel")
+sword_node = NodePath("Elements/SwordNode")
+sword = NodePath("Elements/SwordNode/Sword")
+dash_sound = NodePath("DashSound")
+ball_name = "Swordsman"
+attack_cooldown = 0.01
+elements = NodePath("Elements")
+sprite = NodePath("Sprite")
+collision_shape = NodePath("CollisionShape2D")
+attack_timer = NodePath("AttackTimer")
+clack_sound = NodePath("ClackSound")
+label = NodePath("CenterContainer/Label")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=555754557]
+modulate = Color(0.8, 0.8, 0.8, 1)
+texture = ExtResource("2_8t85u")
+
+[node name="Borde" type="Sprite2D" parent="Sprite" unique_id=1785010644]
+modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+scale = Vector2(1.025, 1.025)
+texture = ExtResource("2_8t85u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=441636763]
+shape = SubResource("CircleShape2D_eb21c")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=513371093]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.5
+offset_top = -36.5
+offset_right = 23.5
+offset_bottom = 36.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CenterContainer" unique_id=224051280]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_eb21c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=485766822]
+wait_time = 0.25
+one_shot = true
+
+[node name="ClackSound" type="AudioStreamPlayer2D" parent="." unique_id=359446657]
+stream = ExtResource("4_02hxr")
+panning_strength = 3.0
+
+[node name="Elements" type="Node2D" parent="." unique_id=1309617775]
+
+[node name="SwordNode" type="Node2D" parent="Elements" unique_id=1897827402]
+
+[node name="Sword" type="Area2D" parent="Elements/SwordNode" unique_id=819611515]
+position = Vector2(80, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Elements/SwordNode/Sword" unique_id=602490207]
+rotation = 0.7853982
+texture = ExtResource("5_r5wx5")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Elements/SwordNode/Sword" unique_id=1529263397]
+scale = Vector2(0.865, 0.865)
+polygon = PackedVector2Array(-32, 6, -33, 11, -22, 12, -18, 15, 18, 15, 42, 0, 36, -6, 29, 0, 20, -4, 12, 0, -12, 2, -23, 7)
+
+[node name="DashTimer" type="Timer" parent="." unique_id=954171650]
+autostart = true
+
+[node name="DashSound" type="AudioStreamPlayer2D" parent="." unique_id=20898016]
+stream = ExtResource("6_fqxyx")
+
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]

@@ -1,0 +1,161 @@
+[gd_scene format=3 uid="uid://lyrwdpkhthm2"]
+
+[ext_resource type="Script" uid="uid://da44v88mikwa0" path="res://components/world.gd" id="1_md670"]
+[ext_resource type="AudioStream" uid="uid://dt3h580xqvd6s" path="res://assets/audio/sword_clash.ogg" id="2_axel1"]
+[ext_resource type="PackedScene" uid="uid://ctdygp14yi3s3" path="res://components/balls/facu_godot/poisonball/ball_poison.tscn" id="3_honm1"]
+[ext_resource type="FontFile" uid="uid://cy7irh352x1gb" path="res://assets/fonts/Anton-Regular.ttf" id="4_64axq"]
+[ext_resource type="PackedScene" uid="uid://npd8sm34wtvi" path="res://components/balls/facu_godot/swordsman/sword_ball.tscn" id="4_honm1"]
+[ext_resource type="AudioStream" uid="uid://c6gom1jmug1il" path="res://assets/audio/1-08 - Kitsch.mp3" id="5_ss4ax"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_64axq"]
+font = ExtResource("4_64axq")
+font_size = 48
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ss4ax"]
+font = ExtResource("4_64axq")
+font_size = 32
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_64axq"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_md670"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_md670"]
+font = ExtResource("4_64axq")
+font_size = 32
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Background" type="Control" unique_id=1857943489]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="ColorRect" parent="." unique_id=468103786]
+z_index = -200
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=804341649]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -260.0
+offset_right = 260.0
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1593773578]
+layout_mode = 2
+alignment = 1
+
+[node name="Ball1Name" type="Label" parent="VBoxContainer/VBoxContainer" unique_id=2131437280]
+layout_mode = 2
+size_flags_horizontal = 3
+label_settings = SubResource("LabelSettings_64axq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VS" type="Label" parent="VBoxContainer/VBoxContainer" unique_id=2112922481]
+layout_mode = 2
+size_flags_vertical = 1
+text = "VS"
+label_settings = SubResource("LabelSettings_ss4ax")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ball2Name" type="Label" parent="VBoxContainer/VBoxContainer" unique_id=815282754]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+label_settings = SubResource("LabelSettings_64axq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BoxRect" type="Panel" parent="VBoxContainer" unique_id=1306508740]
+z_index = -200
+z_as_relative = false
+custom_minimum_size = Vector2(520, 520)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_64axq")
+
+[node name="World" type="Node2D" parent="VBoxContainer/BoxRect" unique_id=582670617 node_paths=PackedStringArray("clash_sound", "ball_1_info", "ball_2_info", "ball_1_name", "ball_2_name")]
+process_mode = 3
+position = Vector2(256, 256)
+script = ExtResource("1_md670")
+clash_sound = NodePath("ClashSound")
+ball_1 = ExtResource("3_honm1")
+ball_2 = ExtResource("4_honm1")
+ball_1_info = NodePath("../../Labels/Ball1Info")
+ball_2_info = NodePath("../../Labels/Ball2Info")
+ball_1_name = NodePath("../../VBoxContainer/Ball1Name")
+ball_2_name = NodePath("../../VBoxContainer/Ball2Name")
+
+[node name="WorldBorder" type="StaticBody2D" parent="VBoxContainer/BoxRect/World" unique_id=2130915806]
+position = Vector2(-252, -252)
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="VBoxContainer/BoxRect/World/WorldBorder" unique_id=1250587540]
+position = Vector2(0, 512)
+shape = SubResource("WorldBoundaryShape2D_md670")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="VBoxContainer/BoxRect/World/WorldBorder" unique_id=1181769677]
+rotation = 3.1415927
+shape = SubResource("WorldBoundaryShape2D_md670")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="VBoxContainer/BoxRect/World/WorldBorder" unique_id=225006624]
+position = Vector2(0, 512)
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_md670")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="VBoxContainer/BoxRect/World/WorldBorder" unique_id=379961580]
+position = Vector2(512, 512)
+rotation = -1.5707964
+shape = SubResource("WorldBoundaryShape2D_md670")
+
+[node name="ClashSound" type="AudioStreamPlayer" parent="VBoxContainer/BoxRect/World" unique_id=1071201906]
+process_mode = 3
+stream = ExtResource("2_axel1")
+volume_db = -6.0
+
+[node name="Labels" type="HBoxContainer" parent="VBoxContainer" unique_id=723063006]
+layout_mode = 2
+
+[node name="Ball1Info" type="Label" parent="VBoxContainer/Labels" unique_id=1815920253]
+layout_mode = 2
+size_flags_horizontal = 3
+label_settings = SubResource("LabelSettings_md670")
+
+[node name="Ball2Info" type="Label" parent="VBoxContainer/Labels" unique_id=1095824546]
+layout_mode = 2
+size_flags_horizontal = 3
+label_settings = SubResource("LabelSettings_md670")
+horizontal_alignment = 2
+
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=750183196]
+process_mode = 3
+stream = ExtResource("5_ss4ax")
+volume_db = -10.0
+autoplay = true

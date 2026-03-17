@@ -1,0 +1,126 @@
+[gd_scene format=3 uid="uid://de8pm584ght03"]
+
+[ext_resource type="Script" uid="uid://c88ah0xlo3i1o" path="res://components/balls/facu_godot/berserker/berserker.gd" id="1_ucyjy"]
+[ext_resource type="Texture2D" uid="uid://ekisdenueh13" path="res://assets/textures/circle.svg" id="2_1dp8j"]
+[ext_resource type="FontFile" uid="uid://cy7irh352x1gb" path="res://assets/fonts/Anton-Regular.ttf" id="3_gyyy0"]
+[ext_resource type="AudioStream" uid="uid://cms53kqductr2" path="res://assets/audio/clack.ogg" id="4_nro7d"]
+[ext_resource type="Texture2D" uid="uid://cd7sgd7w60mc4" path="res://components/balls/facu_godot/berserker/assets/sword.png" id="5_h6a7e"]
+[ext_resource type="AudioStream" uid="uid://cu00yg0ar3e6y" path="res://components/balls/facu_godot/berserker/assets/sword_dash.wav" id="6_wwpce"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_eb21c"]
+bounce = 0.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eb21c"]
+radius = 66.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_eb21c"]
+font = ExtResource("3_gyyy0")
+font_size = 48
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ucyjy"]
+size = Vector2(42, 13)
+
+[node name="Ball" type="RigidBody2D" unique_id=1750905078 node_paths=PackedStringArray("sword_node", "sword", "dash_sound", "elements", "sprite", "collision_shape", "attack_timer", "clack_sound", "label")]
+process_mode = 1
+physics_material_override = SubResource("PhysicsMaterial_eb21c")
+gravity_scale = 0.0
+lock_rotation = true
+continuous_cd = 2
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_ucyjy")
+sword_node = NodePath("Elements/SwordNode")
+sword = NodePath("Elements/SwordNode/SwordArea")
+dash_sound = NodePath("DashSound")
+ball_name = "Berserker"
+size = 1.25
+color = Color(0.9137255, 0, 0, 1)
+elements = NodePath("Elements")
+sprite = NodePath("Sprite")
+collision_shape = NodePath("CollisionShape2D")
+attack_timer = NodePath("AttackTimer")
+clack_sound = NodePath("ClackSound")
+label = NodePath("CenterContainer/Label")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=555754557]
+modulate = Color(0.8, 0.8, 0.8, 1)
+texture = ExtResource("2_1dp8j")
+
+[node name="Borde" type="Sprite2D" parent="Sprite" unique_id=1785010644]
+modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+scale = Vector2(1.025, 1.025)
+texture = ExtResource("2_1dp8j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=441636763]
+shape = SubResource("CircleShape2D_eb21c")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=513371093]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.5
+offset_top = -36.5
+offset_right = 23.5
+offset_bottom = 36.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CenterContainer" unique_id=224051280]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_eb21c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=485766822]
+wait_time = 0.25
+one_shot = true
+
+[node name="ClackSound" type="AudioStreamPlayer2D" parent="." unique_id=359446657]
+stream = ExtResource("4_nro7d")
+panning_strength = 3.0
+
+[node name="Elements" type="Node2D" parent="." unique_id=1309617775]
+
+[node name="SwordNode" type="Node2D" parent="Elements" unique_id=1897827402]
+
+[node name="SwordBody" type="StaticBody2D" parent="Elements/SwordNode" unique_id=1133472448]
+position = Vector2(80, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Elements/SwordNode/SwordBody" unique_id=187914336]
+rotation = 0.7853982
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("5_h6a7e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Elements/SwordNode/SwordBody" unique_id=2035579141]
+position = Vector2(10, 7.000001)
+rotation = -0.07705257
+shape = SubResource("RectangleShape2D_ucyjy")
+
+[node name="SwordArea" type="Area2D" parent="Elements/SwordNode" unique_id=540329972]
+position = Vector2(80, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Elements/SwordNode/SwordArea" unique_id=1860730991]
+rotation = 0.7853982
+scale = Vector2(0.9999999, 0.9999999)
+texture = ExtResource("5_h6a7e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Elements/SwordNode/SwordArea" unique_id=115876978]
+position = Vector2(10, 7.000001)
+rotation = -0.07705257
+scale = Vector2(1.1, 1.1)
+shape = SubResource("RectangleShape2D_ucyjy")
+
+[node name="DashTimer" type="Timer" parent="." unique_id=954171650]
+wait_time = 2.0
+autostart = true
+
+[node name="DashSound" type="AudioStreamPlayer2D" parent="." unique_id=20898016]
+stream = ExtResource("6_wwpce")
+
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]

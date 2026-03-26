@@ -2,9 +2,8 @@
 
 [ext_resource type="Script" uid="uid://da44v88mikwa0" path="res://components/world.gd" id="1_md670"]
 [ext_resource type="AudioStream" uid="uid://dt3h580xqvd6s" path="res://assets/audio/sword_clash.ogg" id="2_axel1"]
-[ext_resource type="PackedScene" uid="uid://ctdygp14yi3s3" path="res://components/balls/facu_godot/poisonball/ball_poison.tscn" id="3_honm1"]
+[ext_resource type="PackedScene" uid="uid://ctdygp14yi3s3" path="res://components/balls/facu_godot/Luca/ball_poison.tscn" id="3_honm1"]
 [ext_resource type="FontFile" uid="uid://cy7irh352x1gb" path="res://assets/fonts/Anton-Regular.ttf" id="4_64axq"]
-[ext_resource type="PackedScene" uid="uid://npd8sm34wtvi" path="res://components/balls/facu_godot/swordsman/sword_ball.tscn" id="4_honm1"]
 [ext_resource type="AudioStream" uid="uid://c6gom1jmug1il" path="res://assets/audio/1-08 - Kitsch.mp3" id="5_ss4ax"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_64axq"]
@@ -108,7 +107,7 @@ position = Vector2(256, 256)
 script = ExtResource("1_md670")
 clash_sound = NodePath("ClashSound")
 ball_1 = ExtResource("3_honm1")
-ball_2 = ExtResource("4_honm1")
+ball_2 = ExtResource("3_honm1")
 ball_1_info = NodePath("../../Labels/Ball1Info")
 ball_2_info = NodePath("../../Labels/Ball2Info")
 ball_1_name = NodePath("../../VBoxContainer/Ball1Name")

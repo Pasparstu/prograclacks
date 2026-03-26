@@ -1,15 +1,17 @@
 [gd_scene format=3 uid="uid://ctdygp14yi3s3"]
 
-[ext_resource type="Script" uid="uid://kdolik16rnu3" path="res://components/balls/facu_godot/poisonball/ball_poison.gd" id="1_eefqi"]
+[ext_resource type="Script" uid="uid://kdolik16rnu3" path="res://components/balls/facu_godot/Luca/ball_poison.gd" id="1_eefqi"]
+[ext_resource type="PackedScene" uid="uid://cekwue2pf2a7b" path="res://components/balls/facu_godot/Luca/poison_stack.tscn" id="2_ei6us"]
 [ext_resource type="Texture2D" uid="uid://ekisdenueh13" path="res://assets/textures/circle.svg" id="2_rktn7"]
 [ext_resource type="FontFile" uid="uid://cy7irh352x1gb" path="res://assets/fonts/Anton-Regular.ttf" id="3_wn7ej"]
-[ext_resource type="Texture2D" uid="uid://cbvobs2ubdx28" path="res://components/balls/facu_godot/poisonball/assets P/daga.webp" id="4_0m4tp"]
-[ext_resource type="AudioStream" uid="uid://dkwp24hpf5jov" path="res://components/balls/facu_godot/poisonball/assets P/daviddumaisaudio-metal-dagger-hit-185444.mp3" id="4_lsyye"]
+[ext_resource type="Texture2D" uid="uid://cbvobs2ubdx28" path="res://components/balls/facu_godot/Luca/assets P/daga.webp" id="4_0m4tp"]
+[ext_resource type="AudioStream" uid="uid://dkwp24hpf5jov" path="res://components/balls/facu_godot/Luca/assets P/daviddumaisaudio-metal-dagger-hit-185444.mp3" id="4_lsyye"]
 [ext_resource type="AudioStream" uid="uid://cms53kqductr2" path="res://assets/audio/clack.ogg" id="4_pjvin"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0m4tp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eq4vo"]
+radius = 67.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_0voqy"]
 font = ExtResource("3_wn7ej")
@@ -28,9 +30,11 @@ max_contacts_reported = 1
 script = ExtResource("1_eefqi")
 Poison_node = NodePath("PoisonNode")
 daga = NodePath("PoisonNode/daga")
+poison_stack_scene = ExtResource("2_ei6us")
 ball_name = "Poison"
+size = 0.855
 color = Color(0.5178094, 0.39368325, 0.8966147, 1)
-attack_cooldown = 0.01
+attack_cooldown = 10.0
 elements = NodePath("Elements")
 sprite = NodePath("Sprite")
 collision_shape = NodePath("CollisionShape2D")
@@ -85,7 +89,7 @@ panning_strength = 3.0
 [node name="PoisonNode" type="Node2D" parent="." unique_id=913246773]
 
 [node name="daga" type="Area2D" parent="PoisonNode" unique_id=800726824]
-position = Vector2(9.63, 0)
+position = Vector2(0.7, 0)
 scale = Vector2(1.5, 1.5)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PoisonNode/daga" unique_id=1410288073]
@@ -95,7 +99,7 @@ polygon = PackedVector2Array(91, -10, 88, -4, 85, 2, 78, 4, 81, 9, 71, 9, 66, 15
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="PoisonNode" unique_id=1956889072]
-position = Vector2(92.54, -3.4)
+position = Vector2(85.39, -3.4)
 rotation = 0.7679449
 scale = Vector2(0.075, 0.075)
 texture = ExtResource("4_0m4tp")

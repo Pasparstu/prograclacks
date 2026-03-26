@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cekwue2pf2a7b"]
+
+[ext_resource type="Script" uid="uid://c5601bqjn4t5f" path="res://components/balls/facu_godot/Luca/poison_stack.gd" id="1_kfdcd"]
+
+[node name="PoisonStack" type="Node" unique_id=110664595]
+script = ExtResource("1_kfdcd")
+
+[node name="Timer" type="Timer" parent="." unique_id=1901708660]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cbvobs2ubdx28"
-path="res://.godot/imported/daga.webp-0e52e9b43ece634a248154154067726f.ctex"
+path="res://.godot/imported/daga.webp-67af6e38406c02e111363bb17f72cc4d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://components/balls/facu_godot/poisonball/assets P/daga.webp"
-dest_files=["res://.godot/imported/daga.webp-0e52e9b43ece634a248154154067726f.ctex"]
+source_file="res://components/balls/facu_godot/Luca/assets P/daga.webp"
+dest_files=["res://.godot/imported/daga.webp-67af6e38406c02e111363bb17f72cc4d.ctex"]
 
 [params]
 

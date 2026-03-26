@@ -13,7 +13,7 @@ func ball_physics_process(delta : float):
 		sword_node.rotation += 10 * delta
 	
 	for body in sword.get_overlapping_bodies():
-		if body is Ball and body != self:
+		if body is Ball and body != self and attack_timer.is_stopped():
 			attack(body,floor(damage))
 			damage *= 1.25
 

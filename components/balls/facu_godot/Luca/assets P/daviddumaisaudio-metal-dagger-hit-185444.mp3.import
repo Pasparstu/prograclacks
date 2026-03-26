@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dkwp24hpf5jov"
+path="res://.godot/imported/daviddumaisaudio-metal-dagger-hit-185444.mp3-5c56a6b48ba85ff2a4ef19022d771973.mp3str"
+
+[deps]
+
+source_file="res://components/balls/facu_godot/Luca/assets P/daviddumaisaudio-metal-dagger-hit-185444.mp3"
+dest_files=["res://.godot/imported/daviddumaisaudio-metal-dagger-hit-185444.mp3-5c56a6b48ba85ff2a4ef19022d771973.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

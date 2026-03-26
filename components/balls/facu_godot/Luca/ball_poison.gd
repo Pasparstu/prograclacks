@@ -9,7 +9,7 @@ var speed: int = Initial_Speed
 var direction: Vector2
 var damage : float = 1
 var bodies_inside = []
-var damage_per_tick : float = 5
+var damage_per_tick : float = 6
 
 
 func _ready():
